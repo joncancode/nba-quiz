@@ -1,0 +1,31 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    text-align: center;
+    font-size: 30px;
+    width: 600px;
+    background-color: lightgoldenrodyellow;
+    font-family: 'Oswald'
+}
+
+h1 {
+    color: darkblue
+}
+
+
+.btn1 {
+    background-color:lightblue;
+}
+
+.btn2 {
+    background-color: yellow;
+}
+
+.btn3 {
+    background-color: orange;
+}
+
+.btn4 {
+    background-color: lightgreen;
+}
