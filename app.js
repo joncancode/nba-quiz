@@ -14,6 +14,7 @@ console.log("works")
 // one object with properties 
 //Array of strings for choices 
 
+<<<<<<< HEAD
 var mockState = {
 	views: [],questions: [{}, {}],
 }
@@ -21,6 +22,12 @@ var mockState = {
 
 
 let state = {view: ["startPage", "questionsPage", "feedbackPage", "finalPage"],
+=======
+ //--------- Section 1 --------------->
+
+
+let state = {view: "startPage",
+>>>>>>> ab598b9aa2a4df288218051f61d12ca2dab6e9c6
 			  
 			   questions: [{ text: "What won the 2017 NBA championship?" , 
 			   				 choices: ["A. Cavs", "B. Warriors", "C. Knicks", "D. Spurs"],
@@ -36,6 +43,7 @@ let state = {view: ["startPage", "questionsPage", "feedbackPage", "finalPage"],
 
 			   	currentScore: 0,
 
+<<<<<<< HEAD
 			   	answerSelection: [{responseCorrect:"You got it right!"}, 
 			   					   {responseIncorrect: "Go back to the gym"}]
 
@@ -78,3 +86,64 @@ let renderList = function (state, element){
 
 
     
+=======
+			   	// answerSelection: [{responseCorrect:"You got it right!"}, 
+			   	// 				   {responseIncorrect: "Go back to the gym"}]
+
+}
+
+//------------- Modify functions Section 2 ------------------->
+//advance page function
+
+function advancePage(state, view){
+	state.view = view;
+} 
+ 
+
+function answerQuestion(state, questions){
+    
+    state.questions = state.questions[currentQuestion]
+    
+    if (state.questions.choice === state.question.answer) {
+    //if correct, add 1 to score
+     state.currentScore++
+    console.log(state.currentScore)
+    }
+}
+
+function startGame(state, view){
+    state.view = "questionsPage";
+}
+
+function resetGame(state, view){
+    state.view = "startPage";
+}
+
+//------------- Render functions Section 3 ------------------->
+let renderList = function(state, element){
+      return (
+        `<div class=${view}>`
+        );
+      
+    element.html(itemsHTML);
+    };
+
+
+//------------- Event listeners Section 4 ------------------->
+
+$(document).ready(function() {
+
+$('.start').on('click', '', function(event){
+    console.log("starting the page")
+  // 1. Change state with state mod function
+  // 2. Invoke render function
+  
+  });
+
+$('.answerButtons').on('submit', '', function(event){
+    event.preventDefault();
+
+    });
+
+})
+>>>>>>> ab598b9aa2a4df288218051f61d12ca2dab6e9c6

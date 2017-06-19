@@ -9,10 +9,21 @@
     font-family: 'Oswald'
 }
 
+.hidden {
+    display: none
+}
+
 h1 {
     color: darkblue
 }
 
+.nextbutton {
+    background-color: darkblue;
+    width: 55px;
+    height: 35px;
+    color: white;
+    text-align: center
+}
 
 .btn1 {
     background-color:lightblue;
