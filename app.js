@@ -14,13 +14,10 @@ console.log("works")
 // one object with properties 
 //Array of strings for choices 
 
-var mockState = {
-	views: [],questions: [{}, {}],
-}
  //--------- Section 1 --------------->
 
 
-let state = {view: ["startPage", "questionsPage", "feedbackPage", "finalPage"],
+let state = {view: "startPage",
 			  
 			   questions: [{ text: "What won the 2017 NBA championship?" , 
 			   				 choices: ["A. Cavs", "B. Warriors", "C. Knicks", "D. Spurs"],
@@ -36,41 +33,62 @@ let state = {view: ["startPage", "questionsPage", "feedbackPage", "finalPage"],
 
 			   	currentScore: 0,
 
-			   	answerSelection: [{responseCorrect:"You got it right!"}, 
-			   					   {responseIncorrect: "Go back to the gym"}]
+			   	// answerSelection: [{responseCorrect:"You got it right!"}, 
+			   	// 				   {responseIncorrect: "Go back to the gym"}]
 
 }
-
-
-
 
 //------------- Modify functions Section 2 ------------------->
 //advance page function
 
-// function submitButton (){}
 function advancePage(state, view){
-	state.view = startPage;
-	console.log(advancePage);
-	console.log(state.currentScore);
-	console.log(state.currentQuestion);
+	state.view = view;
 } 
+ 
 
-//results page / if (true){ "you got it right" } else {"go back to the gym"}
-//On this page, hide the other pages unless you are on the last page it will return you to the start  
-// function displayScore(){}
+function answerQuestion(state, questions){
+    
+    state.questions = state.questions[currentQuestion]
+    
+    if (state.questions.choice === state.question.answer) {
+    //if correct, add 1 to score
+     state.currentScore++
+    console.log(state.currentScore)
+    }
+}
 
-// current: questions.text[0]
+function startGame(state, view){
+    state.view = "questionsPage";
+}
+
+function resetGame(state, view){
+    state.view = "startPage";
+}
 
 //------------- Render functions Section 3 ------------------->
-let renderList = function (state, element){
-	return 
-}
+let renderList = function(state, element){
+      return (
+        `<div class=${view}>`
+        );
+      
+    element.html(itemsHTML);
+    };
 
 
 //------------- Event listeners Section 4 ------------------->
-// function submitButton (){}
 
+$(document).ready(function() {
 
+$('.start').on('click', '', function(event){
+    console.log("starting the page")
+  // 1. Change state with state mod function
+  // 2. Invoke render function
+  
+  });
 
+$('.answerButtons').on('submit', '', function(event){
+    event.preventDefault();
 
-//------------- Initialize Section 5 ------------------->
+    });
+
+})

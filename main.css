@@ -9,6 +9,10 @@
     font-family: 'Oswald'
 }
 
+.hidden {
+    display: none
+}
+
 h1 {
     color: darkblue
 }
