@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,50 +8,52 @@
     <title>NBA Quiz</title>
 
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="main.css"> -->
+    <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-    <div class ="container">
+    <div class="container">
         <div class="startPage">
-        
+
             <h1>The NBA Quiz</h1>
             <h2>Are you ready to play?</h2>
             <button class="start">START</button>
 
         </div>
-            <div class="questionsPage">
+        <div class="questionsPage hidden">
 
 
-            <h1>What team...</h1>
-            
-        <div class ='answerButtons'>
-            <form action="">
-                <fieldset> 
-                    <legend>Select the correct answer</legend>
-                    <button class="btn btn1" id="0" type="submit"></button>
-                    <button class="btn btn2" id="1" type="submit"></button>
-                    <button class="btn btn3" id="2" type="submit"></button>
-                    <button class="btn btn4" id="3" type="submit"></button>
-                </fieldset>
-            </form>
+            <h1 id="questionAsk">What team...</h1>
+
+            <div class='answerButtons'>
+                <form action="">
+                    <fieldset>
+                        <legend>Select the correct answer</legend>
+                        <button class="btn btn1" value="0" type="submit"></button>
+                        <button class="btn btn2" value="1" type="submit"></button>
+                        <button class="btn btn3" value="2" type="submit"></button>
+                        <button class="btn btn4" value="3" type="submit"></button>
+                    </fieldset>
+                </form>
+            </div>
+
         </div>
-
-        </div>
-        <div class="feedbackPage">
+        <div class="feedbackPage hidden">
 
             <h2>You got it right/wrong</h2>
-                <br></br>
+            <br></br>
             <button class="nextbutton">NEXT</button>
 
         </div>
-        <div class="finalPage">
+        <div class="finalPage hidden">
 
-            
+            <p>This is the final page</p>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </body>
+
 </html>
 
 <!-- Instead of <button> with img inside, consider input type="image". 
