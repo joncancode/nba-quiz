@@ -45,12 +45,12 @@ function answerQuestion(event, chosenButton){
 
 var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
 
-<<<<<<< HEAD
+
 var currentScoreIndex = state.currentScore
 var currentQuestionText = state.questions[state.currentQuestion].text
-=======
 
->>>>>>> df17103077b0297b5d82ff165cba7423bfafebd9
+
+
 console.log(currentQuestionText)
 console.log(state.questions[state.currentQuestion].choices[chosenButton])
 
@@ -98,7 +98,7 @@ function nextQuestion(view, currentScore, currentQuestionText) {
 }
 
 //------------- Render functions Section 3 ------------------->
-<<<<<<< HEAD
+
 let renderList = function(element, chosenButton){
   //loop thru choices and put names where they should be
   return (
@@ -135,7 +135,7 @@ let renderList = function(element, chosenButton){
       })
     element.html(itemsHTML);
     };*/
-=======
+
 function renderQuestion(){
     const curQues = state.currentQuestion
     const ques = state.questions[curQues]
@@ -146,7 +146,7 @@ function renderQuestion(){
     $(".answerButtons .btn3").text(ques.choices[2]);
     $(".answerButtons .btn4").text(ques.choices[3]);
     console.log(ques)
->>>>>>> df17103077b0297b5d82ff165cba7423bfafebd9
+
 
 }
 
