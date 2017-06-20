@@ -83,7 +83,7 @@ function nextQuestion(view, currentScore, currentQuestionText) {
     state.currentQuestion++
     console.log(state.currentScore)
      for (var i = 0; i < state.questions.length; i++){
-         document.getElementById("questionAsk").innerHTML = state.questions[i].text;
+        
         console.log("loop working")
         state.view = "feedbackPage";
             $('.startPage').hide()
@@ -96,12 +96,14 @@ function nextQuestion(view, currentScore, currentQuestionText) {
 function renderQuestion(){
     const curQues = state.currentQuestion
     const ques = state.questions[curQues]
+
     $("#questionAsk").text(ques.text);
     $(".answerButtons .btn1").text(ques.choices[0]);
     $(".answerButtons .btn2").text(ques.choices[1]);
     $(".answerButtons .btn3").text(ques.choices[2]);
     $(".answerButtons .btn4").text(ques.choices[3]);
     console.log(ques)
+
 }
 
 //------------- Event listeners Section 4 ------------------->
@@ -120,7 +122,7 @@ $('.start').on('click', '', function(event){
 
 $('.btn').on('click', '', function(event){
     event.preventDefault();
-    var chosenButton = $(this).attr('id')
+    var chosenButton = $(this).val()
     answerQuestion(event, chosenButton)
 
    
