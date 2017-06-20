@@ -49,6 +49,7 @@ function answerQuestion(event, chosenButton){
 
 var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
 
+var currentScoreIndex = state.currentScore
 var currentQuestionText = state.questions[state.currentQuestion].text
 console.log(currentQuestionText)
 console.log(state.questions[state.currentQuestion].choices[chosenButton])
@@ -69,6 +70,7 @@ console.log(state.questions[state.currentQuestion].choices[chosenButton])
 }
 
 function startGame(view){
+	renderList();
     state.view = "questionsPage";
     $('.startPage').hide()
     $('.feedbackPage').hide()
@@ -85,7 +87,6 @@ function nextQuestion(view, currentScore) {
     console.log(state.currentScore)
      for (var i = 0; i < state.questions.length; i++){
         console.log("loop working")
-        state.view = "feedbackPage";
             $('.startPage').hide()
            // $('.questionsPage').hide()
             $('.finalPage').hide()
@@ -93,10 +94,42 @@ function nextQuestion(view, currentScore) {
 }
 
 //------------- Render functions Section 3 ------------------->
-let renderList = function(element){
+let renderList = function(element, chosenButton){
   //loop thru choices and put names where they should be
-  
-    };
+  return (
+        `<div class ='answerButtons'>
+            <form action="">
+                <fieldset> 
+                    <legend>Select the correct answer</legend>
+                    <button class="btn btn1" id="0" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
+                    <button class="btn btn2" id="1" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
+                    <button class="btn btn3" id="2" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
+                    <button class="btn btn4" id="3" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
+                </fieldset>
+            </form>
+        </div>`
+            )
+    }
+ /*let renderList = function (appState, element){
+    let itemsHTML = appState.items.map(function(item, i){
+      let checkedClass =  item.checked ? 'shopping-item__checked': '';
+      return (
+        `<li data-item-index="${i}">
+          <span class="shopping-item ${checkedClass}">${item.name}
+          </span>
+          <div class="shopping-item-controls">
+            <button class="shopping-item-toggle">
+              <span class="button-label">check</span>
+            </button>
+            <button class="shopping-item-delete">
+              <span class="button-label">delete</span>
+            </button>
+          </div>
+        </li>`
+        );
+      })
+    element.html(itemsHTML);
+    };*/
 
 
 //------------- Event listeners Section 4 ------------------->
@@ -113,13 +146,14 @@ $('.start').on('click', '', function(event){
 //   const itemIndex = $(event.currentTarget).closest('li').data('item-index');
   });
 
-$('.btn').on('click', '', function(event){
+$('.btn').on('click', '', function(event, currentScore){
     event.preventDefault();
     var chosenButton = $(this).attr('id')
     answerQuestion(event, chosenButton)
-
+$( ".feedbackPage h2" ).html(`You have ${currentScore} correct` );
    
 
     });
+
 
 })
