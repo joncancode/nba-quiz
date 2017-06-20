@@ -35,9 +35,6 @@ let state = {view: "startPage",
 
 			   	currentScore: 0,
 
-			   	// answerSelection: [{responseCorrect:"You got it right!"}, 
-			   	// 				   {responseIncorrect: "Go back to the gym"}]
-
 }
 
 //------------- Modify functions Section 2 ------------------->
@@ -60,8 +57,9 @@ console.log(state.questions[state.currentQuestion].choices[chosenButton])
     if (state.questions[state.currentQuestion].choices[chosenButton] === correctAnswer) {
     //if correct, add 1 to score
      state.currentScore++
+        
         console.log("correct")
-        console.log(state.currentScore)
+        //console.log(state.currentScore)
         nextQuestion()
     } else {
         console.log("wrong")
@@ -72,7 +70,9 @@ console.log(state.questions[state.currentQuestion].choices[chosenButton])
 
 function startGame(view){
     state.view = "questionsPage";
-    
+    $('.startPage').hide()
+    $('.feedbackPage').hide()
+    $('.finalPage').hide()
 }
 
 function resetGame(view){
@@ -80,12 +80,15 @@ function resetGame(view){
     currentScore = 0
 }
 
-function nextQuestion(view) {
+function nextQuestion(view, currentScore) {
     state.currentQuestion++
+    console.log(state.currentScore)
      for (var i = 0; i < state.questions.length; i++){
-        console.log("loop")
-        state.view = "feedbackPage"
-         
+        console.log("loop working")
+        state.view = "feedbackPage";
+            $('.startPage').hide()
+           // $('.questionsPage').hide()
+            $('.finalPage').hide()
      }
 }
 
@@ -114,9 +117,7 @@ $('.btn').on('click', '', function(event){
     event.preventDefault();
     var chosenButton = $(this).attr('id')
     answerQuestion(event, chosenButton)
-    //console.log($(this))
-    
-  //var chosenButton = $(".btn").val() 
+
    
 
     });
