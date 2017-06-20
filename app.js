@@ -12,7 +12,6 @@
 // one object with properties 
 //Array of strings for choices 
 
-
  //--------- Section 1 --------------->
 
 let state = {view: "startPage",
@@ -120,4 +119,3 @@ $('.btn').on('click', '', function(event){
     });
 
 })
-
