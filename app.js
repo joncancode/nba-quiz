@@ -12,9 +12,11 @@
 // one object with properties 
 //Array of strings for choices 
 
+
  //--------- Section 1 --------------->
 
 let state = {view: "startPage",
+
 			  
 			   questions: [{ text: "What won the 2017 NBA championship?" , 
 			   				 choices: ["A. Cavs", "B. Warriors", "C. Knicks", "D. Spurs"],
@@ -118,3 +120,4 @@ $('.btn').on('click', '', function(event){
     });
 
 })
+
