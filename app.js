@@ -17,7 +17,8 @@
 let state = {view: "startPage",
 
 			  
-			   questions: [{ text: "What won the 2017 NBA championship?" , 
+			   questions: [
+                            { text: "What won the 2017 NBA championship?" , 
 			   				 choices: ["A. Cavs", "B. Warriors", "C. Knicks", "D. Spurs"],
 			   				 answer: 1},
 			   			  
@@ -49,14 +50,14 @@ function advancePage(view){
 } 
  
 
-function answerQuestion(event){
+function answerQuestion(event, chosenButton){
 
 var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
 
-console.log(state.questions[state.currentQuestion].choices)
+console.log(state.questions[state.currentQuestion].choices[chosenButton])
 
 
-    if (state.questions[state.currentQuestion].choices === correctAnswer) {
+    if (state.questions[state.currentQuestion].choices[chosenButton] === correctAnswer) {
     //if correct, add 1 to score
      state.currentScore++
         console.log("correct")
@@ -64,6 +65,7 @@ console.log(state.questions[state.currentQuestion].choices)
         nextQuestion()
     } else {
         console.log("wrong")
+        console.log(state.currentScore)
         nextQuestion()
     }
 }
@@ -75,6 +77,7 @@ function startGame(view){
 
 function resetGame(view){
     state.view = "startPage";
+    currentScore = 0
 }
 
 function nextQuestion(view) {
@@ -87,8 +90,8 @@ function nextQuestion(view) {
 }
 
 //------------- Render functions Section 3 ------------------->
-let renderList = function(state, element){
-  
+let renderList = function(element){
+  //loop thru choices and put names where they should be
  
     };
 
@@ -109,12 +112,12 @@ $('.start').on('click', '', function(event){
 
 $('.btn').on('click', '', function(event){
     event.preventDefault();
-    answerQuestion(event)
+    var chosenButton = $(this).attr('id')
+    answerQuestion(event, chosenButton)
     //console.log($(this))
     
   //var chosenButton = $(".btn").val() 
-   var chosenButton = $(this)
-   console.log(chosenButton)
+   
 
     });
 
