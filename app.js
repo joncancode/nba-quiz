@@ -17,7 +17,7 @@
 let state = {view: "startPage",
 			  
 			   questions: [
-                            { text: "What won the 2017 NBA championship?" , 
+                            { text: "What team won the 2017 NBA championship?" , 
 			   				 choices: ["A. Cavs", "B. Warriors", "C. Knicks", "D. Spurs"],
 			   				 answer: 1},
 			   			  
@@ -38,18 +38,14 @@ let state = {view: "startPage",
 //------------- Modify functions Section 2 ------------------->
 //advance page function
 
-function advancePage(view){
-	state.view = view
 
-    //var currentPage = document.getElementById('startPage')
-} 
- 
+var currentQuestionText = state.questions[state.currentQuestion].text
 
 function answerQuestion(event, chosenButton){
 
 var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
 
-var currentQuestionText = state.questions[state.currentQuestion].text
+
 console.log(currentQuestionText)
 console.log(state.questions[state.currentQuestion].choices[chosenButton])
 
@@ -67,12 +63,15 @@ console.log(state.questions[state.currentQuestion].choices[chosenButton])
         nextQuestion()
     }
 }
+//need checkState function
 
 function startGame(view){
     state.view = "questionsPage";
     $('.startPage').hide()
+    $('.questionsPage').show()
     $('.feedbackPage').hide()
     $('.finalPage').hide()
+    renderQuestion()
 }
 
 function resetGame(view){
@@ -80,10 +79,11 @@ function resetGame(view){
     currentScore = 0
 }
 
-function nextQuestion(view, currentScore) {
+function nextQuestion(view, currentScore, currentQuestionText) {
     state.currentQuestion++
     console.log(state.currentScore)
      for (var i = 0; i < state.questions.length; i++){
+         document.getElementById("questionAsk").innerHTML = state.questions[i].text;
         console.log("loop working")
         state.view = "feedbackPage";
             $('.startPage').hide()
@@ -93,11 +93,16 @@ function nextQuestion(view, currentScore) {
 }
 
 //------------- Render functions Section 3 ------------------->
-let renderList = function(element){
-  //loop thru choices and put names where they should be
-  
-    };
-
+function renderQuestion(){
+    const curQues = state.currentQuestion
+    const ques = state.questions[curQues]
+    $("#questionAsk").text(ques.text);
+    $(".answerButtons .btn1").text(ques.choices[0]);
+    $(".answerButtons .btn2").text(ques.choices[1]);
+    $(".answerButtons .btn3").text(ques.choices[2]);
+    $(".answerButtons .btn4").text(ques.choices[3]);
+    console.log(ques)
+}
 
 //------------- Event listeners Section 4 ------------------->
 
