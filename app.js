@@ -15,7 +15,6 @@
  //--------- Section 1 --------------->
 
 let state = {view: "startPage",
-
 			  
 			   questions: [
                             { text: "What won the 2017 NBA championship?" , 
@@ -36,7 +35,6 @@ let state = {view: "startPage",
 			   	currentScore: 0,
 
 }
-
 //------------- Modify functions Section 2 ------------------->
 //advance page function
 
@@ -51,6 +49,8 @@ function answerQuestion(event, chosenButton){
 
 var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
 
+var currentQuestionText = state.questions[state.currentQuestion].text
+console.log(currentQuestionText)
 console.log(state.questions[state.currentQuestion].choices[chosenButton])
 
 
@@ -95,7 +95,7 @@ function nextQuestion(view, currentScore) {
 //------------- Render functions Section 3 ------------------->
 let renderList = function(element){
   //loop thru choices and put names where they should be
- 
+  
     };
 
 
