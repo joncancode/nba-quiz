@@ -43,102 +43,83 @@ var currentQuestionText = state.questions[state.currentQuestion].text
 
 function answerQuestion(event, chosenButton){
 
-var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
-
-
-var currentScoreIndex = state.currentScore
-var currentQuestionText = state.questions[state.currentQuestion].text
+	var correctAnswer = state.questions[state.currentQuestion].choices[state.questions[state.currentQuestion].answer]
+	var currentScoreIndex = state.currentScore
+	var currentQuestionText = state.questions[state.currentQuestion].text
 
 
 
-console.log(currentQuestionText)
-console.log(state.questions[state.currentQuestion].choices[chosenButton])
+	console.log(currentQuestionText)
+	console.log(state.questions[state.currentQuestion].choices[chosenButton])
 
-
+//change to compare the numeric values of the chosenButton value
     if (state.questions[state.currentQuestion].choices[chosenButton] === correctAnswer) {
     //if correct, add 1 to score
      state.currentScore++
-        
         console.log("correct")
-        //console.log(state.currentScore)
-        nextQuestion()
-    } else {
-        console.log("wrong")
-        console.log(state.currentScore)
-        nextQuestion()
-    }
+    } 
+    	state.view = "feedbackPage";
+    	showFeedback()
 }
 //need checkState function
 
-function startGame(view){
-	renderList();
+function startGame(){
     state.view = "questionsPage";
-    $('.startPage').hide()
-    $('.questionsPage').show()
-    $('.feedbackPage').hide()
-    $('.finalPage').hide()
-    renderQuestion()
+    showView();
+    showQuestion()
 }
 
-function resetGame(view){
+function resetGame(){
     state.view = "startPage";
     currentScore = 0
 }
 
-function nextQuestion(view, currentScore, currentQuestionText) {
+function nextQuestion() {
     state.currentQuestion++
     console.log(state.currentScore)
-     for (var i = 0; i < state.questions.length; i++){
-        
-        console.log("loop working")
-            $('.startPage').hide()
-           // $('.questionsPage').hide()
-            $('.finalPage').hide()
-     }
+    console.info(state.currentQuestion < state.questions.length)
+    if (state.currentQuestion < state.questions.length) {
+    	state.view = "questionsPage";
+    	showQuestion();
+    }
+    else {
+    	state.view = "finalPage";
+    	showResults();
+    }
+
+
 }
 
+function showFeedback (){
+	showView();
+    let score = state.currentScore
+    $( ".feedbackPage h2" ).html(`You have ${score} correct` );
+    console.log(score);
+}
+
+
+function showResults() {
+	showView();
+    $( ".finalPage p" ).html(`You have ${score} correct` );
+
+	console.log('show results')
+}
+
+function showView(){
+	$('.startPage').hide()
+    $('.questionsPage').hide()
+    $('.feedbackPage').hide()
+    $('.finalPage').hide()
+	console.log('show', state.view);
+
+	$(`.${state.view}`).show();
+} 
 //------------- Render functions Section 3 ------------------->
 
-let renderList = function(element, chosenButton){
-  //loop thru choices and put names where they should be
-  return (
-        `<div class ='answerButtons'>
-            <form action="">
-                <fieldset> 
-                    <legend>Select the correct answer</legend>
-                    <button class="btn btn1" id="0" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
-                    <button class="btn btn2" id="1" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
-                    <button class="btn btn3" id="2" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
-                    <button class="btn btn4" id="3" type="submit">${state.questions[state.currentQuestion].choices[chosenButton]}</button>
-                </fieldset>
-            </form>
-        </div>`
-            )
-    }
- /*let renderList = function (appState, element){
-    let itemsHTML = appState.items.map(function(item, i){
-      let checkedClass =  item.checked ? 'shopping-item__checked': '';
-      return (
-        `<li data-item-index="${i}">
-          <span class="shopping-item ${checkedClass}">${item.name}
-          </span>
-          <div class="shopping-item-controls">
-            <button class="shopping-item-toggle">
-              <span class="button-label">check</span>
-            </button>
-            <button class="shopping-item-delete">
-              <span class="button-label">delete</span>
-            </button>
-          </div>
-        </li>`
-        );
-      })
-    element.html(itemsHTML);
-    };*/
-
-function renderQuestion(){
-    const curQues = state.currentQuestion
+function showQuestion(){
+    let curQues = state.currentQuestion
     const ques = state.questions[curQues]
+    showView();
 
     $("#questionAsk").text(ques.text);
     $(".answerButtons .btn1").text(ques.choices[0]);
@@ -146,32 +127,59 @@ function renderQuestion(){
     $(".answerButtons .btn3").text(ques.choices[2]);
     $(".answerButtons .btn4").text(ques.choices[3]);
     console.log(ques)
+    
+    console.log("loop working")
 
-
+   
 }
 
 //------------- Event listeners Section 4 ------------------->
 
 $(document).ready(function() {
 
-$('.start').on('click', '', function(event){
-   
-  // 1. Change state with state mod function
+	$('.start').on('click', '', function(event){
+	   
+	    startGame()
 
-    startGame(state)
+  	});
 
-  // 2. Invoke render function
-//   const itemIndex = $(event.currentTarget).closest('li').data('item-index');
-  });
-
-$('.btn').on('click', '', function(event, currentScore){
-    event.preventDefault();
-    var chosenButton = $(this).val()
-    answerQuestion(event, chosenButton)
-$( ".feedbackPage h2" ).html(`You have ${currentScore} correct` );
-   
+	$('.btn').on('click', '', function(event){
+	    event.preventDefault(); //form submit problem -- dont actually need 
+	    var chosenButton = $(this).val()
+	    answerQuestion(event, chosenButton)   
 
     });
+	$("#questionAsk").submit('', function(event) {
+		event.preventDefault();
+	    state.view = "questionsPage"; //try to move back to "state" manipulation (section 2)
+		showQuestion();
+	}) 
 
-
+	$('.nextButton').on('click', function(event) {
+		event.preventDefault();
+		console.log("nextButton")
+		nextQuestion()
+	})
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
