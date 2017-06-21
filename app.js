@@ -47,16 +47,10 @@ function answerQuestion(event, chosenButton){
 	var currentScoreIndex = state.currentScore
 	var currentQuestionText = state.questions[state.currentQuestion].text
 
-
-
-	console.log(currentQuestionText)
-	console.log(state.questions[state.currentQuestion].choices[chosenButton])
-
 //change to compare the numeric values of the chosenButton value
     if (state.questions[state.currentQuestion].choices[chosenButton] === correctAnswer) {
     //if correct, add 1 to score
      state.currentScore++
-        console.log("correct")
     } 
     	state.view = "feedbackPage";
     	showFeedback()
@@ -71,8 +65,9 @@ function startGame(){
 
 function resetGame(){
     state.view = "startPage";
+    state.currentScore = 0
+	state.currentQuestion = 0
 	showView();
-    currentScore = 0
 }
 
 function nextQuestion() {
@@ -94,16 +89,21 @@ function nextQuestion() {
 function showFeedback (){
 	showView();
     let score = state.currentScore
-    $( ".feedbackPage h2" ).html(`You have ${score} correct` );
+    $( ".feedbackPage h2").html(`You have ${score} correct` );
     console.log(score);
 }
 
 
 function showResults() {
 	showView();
-    $( ".finalPage h2" ).html(`You have ${score} correct` );
+	let score = state.currentScore
+	let finalScore = ""
+	console.log("finalScore", finalScore)
+	if (state.currentScore === 3){
+		finalScore.text == "Nice try"
+	} 
 
-	console.log('show results')
+    $( ".finalPage h2").html(`You have ${score} correct. Want to play again?`);
 }
 
 function showView(){
