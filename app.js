@@ -28,6 +28,15 @@ let state = {view: "startPage",
                             { text: "Who scored the most points in NBA history?",
 			   				 choices: ["A. Michael Jordan", "B. Karl Malone", "C. Wilt Chamberlain", "D. Kareem Abdul-Jabbar"],
 			   				 answer: 3},
+			   				 
+							
+							{ text: "Which team never won a championship?",
+			   				 choices: ["A. Bulls", "B. Blazers", "C. Suns", "D. Mavericks"],
+			   				 answer: 2},
+							
+							{ text: "When you hit three shots in a row in NBA Jam, what do they say?",
+			   				 choices: ["A. 'He’s on fire!'", "B. 'No one can hold him!'", "C. 'Hat trick!'", "D. 'Kobe!'"],
+			   				 answer: 0},
 			   				 ],
 
 			   	currentQuestion: 0,
@@ -72,8 +81,6 @@ function resetGame(){
 
 function nextQuestion() {
     state.currentQuestion++
-    console.log(state.currentScore)
-    console.info(state.currentQuestion < state.questions.length)
     if (state.currentQuestion < state.questions.length) {
     	state.view = "questionsPage";
     	showQuestion();
@@ -90,7 +97,6 @@ function showFeedback (){
 	showView();
     let score = state.currentScore
     $( ".feedbackPage h2").html(`You have ${score} correct` );
-    console.log(score);
 }
 
 
@@ -98,7 +104,6 @@ function showResults() {
 	showView();
 	let score = state.currentScore
 	let finalScore = ""
-	console.log("finalScore", finalScore)
 	if (state.currentScore === 3){
 		finalScore.text == "Nice try"
 	} 
@@ -111,7 +116,6 @@ function showView(){
     $('.questionsPage').hide()
     $('.feedbackPage').hide()
     $('.finalPage').hide()
-	console.log('show', state.view);
 
 	$(`.${state.view}`).show();
 } 
@@ -127,10 +131,6 @@ function showQuestion(){
     $(".answerButtons .btn2").text(ques.choices[1]);
     $(".answerButtons .btn3").text(ques.choices[2]);
     $(".answerButtons .btn4").text(ques.choices[3]);
-    console.log(ques)
-    
-    console.log("loop working")
-
    
 }
 
@@ -158,7 +158,6 @@ $(document).ready(function() {
 
 	$('.nextButton').on('click', function(event) {
 		event.preventDefault();
-		console.log("nextButton")
 		nextQuestion()
 	})
 
