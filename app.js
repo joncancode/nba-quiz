@@ -71,6 +71,7 @@ function startGame(){
 
 function resetGame(){
     state.view = "startPage";
+	showView();
     currentScore = 0
 }
 
@@ -100,7 +101,7 @@ function showFeedback (){
 
 function showResults() {
 	showView();
-    $( ".finalPage p" ).html(`You have ${score} correct` );
+    $( ".finalPage h2" ).html(`You have ${score} correct` );
 
 	console.log('show results')
 }
@@ -159,6 +160,11 @@ $(document).ready(function() {
 		event.preventDefault();
 		console.log("nextButton")
 		nextQuestion()
+	})
+
+	$('.resetButton').on('click', function(event) {
+		event.preventDefault();
+		resetGame()
 	})
 })
 
